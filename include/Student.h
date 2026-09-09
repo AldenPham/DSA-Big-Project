@@ -1,5 +1,5 @@
 /*
-.h là một file tạo abstract class trong c++
+.h là một file tạo class trong c++
 
 Điểm khác giữa abs class trong c++ và c#, java là sytax.
     -Sytax
