@@ -10,7 +10,7 @@ Hướng dẫn sytax
 -Tạo array: dynamicArray<"Loại dữ liệu, vd: int, string"> "tên array"("Size array", "thêm giá trị bạn đầu nếu muốn")
 -Nhét phần tử vào cuối array: "tên array".push_back("dữ liệu"), lưu ý phải trùng với loại dữ liệu array đang lưu trữ
 
-
+~dynamicArray destructor ( giai phong bo nho khi ma obj chet)
  */
 
 
@@ -24,17 +24,11 @@ class dynamicArray{
     int sizeArr;
     int capacity;
 
+    void resize();
+    
     public:
-    dynamicArray(int capacity, T defaultValue = T()){;
-        this->capacity = capacity;
-        T* array = new T[capacity];
-
-        for(int i = 0; i < capacity; i++){
-            array[i] = defaultValue;
-        }
-
-        sizeArr = 0;
-    }
+    dynamicArray(int capacity, T defaultValue = T());
+    ~dynamicArray();
 
     void push_Back(T val); //
 
@@ -42,9 +36,6 @@ class dynamicArray{
 
     int size(); 
     
-    void resize(); //
+    T& operator[](int idx);
 
-    void set(int idx, T val); //
-
-    void get(int idx); //
 };

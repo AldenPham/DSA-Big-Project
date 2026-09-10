@@ -4,59 +4,77 @@ Alden Note: Thêm throw exception vào getter, setter
 
 #include <dynamicArray.h>
 #include <iostream>
-
+#include <stdexcept>
 using namespace std;
 
+//Constructor
 template <typename T>
-void dynamicArray<T>::set(int idx ,T val){
-    if(idx < 0 || idx > sizeArr){
-        return;
-    }
+dynamicArray<T>::dynamicArray(int capacity, T defaultValue = T()){
+        this->capacity = capacity;
+        this->array = new T[capacity];
 
-    array[idx] = val;
+        for(int i = 0; i < capacity; i++){
+            array[i] = defaultValue;
+        }
+
+        sizeArr = 0;
 }
 
-template <typename T>
-void get(int idx){
-    if(idx < 0 || idx > sizeArr){
-        return;
-    }
-
-    cout << array[idx];
-}
-
+//Func push_Back()
 template <typename T>
 void dynamicArray<T>::push_Back(T val){
     if(sizeArr == capacity){
         resize();
     }
 
-    array[i] = val;
-    size++;
+    array[sizeArr] = val;
+    sizeArr++;
 }
 
+//Func pop_back
 template <typename T>
 void dynamicArray<T>::pop_Back(){
     if(sizeArr == 0){
-        return;
+        throw out_of_range("Index out of range");
     }
 
-    size--;
+    sizeArr--;
 }
 
+//Func Resize
 template <typename T>
 void dynamicArray<T>::resize(){
     capacity = capacity*2;
+
     T* newArray = new T[capacity];
 
     for(int i = 0; i < sizeArr; i++){
         newArray[i] = array[i];
     }
 
+    delete[] array;    
     array = newArray;
 }
 
+//Func Size
 template <typename T>
 int size(){
     return sizeArr;
+}
+
+//Getter setter
+template <typename T>
+T& dynamicArray<T>::operator[](int idx) {
+
+    if (idx < 0 || idx >= sizeArr) {
+        throw std::out_of_range("Index out of range");
+    }
+
+    return array[idx];
+}
+
+//Destructor
+template <typename T>
+dynamicArray<T>::~dynamicArray(){
+    delete[] array;
 }
