@@ -77,3 +77,67 @@ int main() {
     return 0;
 }
 */
+
+/*
+int main() {
+    cout << "===== TEST HASHTABLE =====" << endl;
+
+    hashTable root(100, 2);
+
+    Student s1("Nguyen Van A", "25133074", 8, 1);
+    Student s2("Tran Van B", "25133125", 7, 2);
+    Student s3("Le Van C", "25133099", 9, 1);
+    Student s4("Pham Van D", "26123001", 6, 3);
+
+    cout << "\n--- Test add() ---" << endl;
+
+    root.add(s1, s1.get_MSSV());
+    cout << "Da them: " << s1.get_MSSV() << endl;
+
+    root.add(s2, s2.get_MSSV());
+    cout << "Da them: " << s2.get_MSSV() << endl;
+
+    root.add(s3, s3.get_MSSV());
+    cout << "Da them: " << s3.get_MSSV() << endl;
+
+    root.add(s4, s4.get_MSSV());
+    cout << "Da them: " << s4.get_MSSV() << endl;
+
+    cout << "\n--- Test get() voi MSSV ton tai ---" << endl;
+
+    Student* result1 = root.get("25133074");
+
+    if (result1 != nullptr) {
+        cout << "Tim thay sinh vien 25133074:" << endl;
+        result1->get_Info();
+    } else {
+        cout << "Khong tim thay 25133074" << endl;
+    }
+
+    cout << "\n--- Test get() voi MSSV khac ---" << endl;
+
+    Student* result2 = root.get("25133125");
+
+    if (result2 != nullptr) {
+        cout << "Tim thay sinh vien 25133125:" << endl;
+        result2->get_Info();
+    } else {
+        cout << "Khong tim thay 25133125" << endl;
+    }
+
+    cout << "\n--- Test get() voi MSSV khong ton tai ---" << endl;
+
+    Student* result3 = root.get("99999999");
+
+    if (result3 != nullptr) {
+        result3->get_Info();
+    } else {
+        cout << "Khong tim thay 99999999" << endl;
+    }
+
+    cout << "\nKet thuc test. Destructor se duoc goi." << endl;
+
+    return 0;
+}
+*/
+/*compile: g++ main.cpp src/hashTable.cpp src/Student.cpp src/doublyLinkedList.cpp -Iinclude -o main*/

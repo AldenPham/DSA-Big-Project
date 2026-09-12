@@ -26,14 +26,12 @@ int hashTable::hash_Func(string key){
 
 //add
 void hashTable::add(Student new_Student, string key){
-    int hash = hash_Func(new_Student.get_MSSV());
-    string segment = new_Student.get_MSSV().substr(0, segment_Length);
+    int hash = hash_Func(key);
+    string segment = key.substr(0, segment_Length);
     string nextKey = key.substr(segment_Length);
 
     doublyLinkedList::node* curr = bucket[hash].search(segment);
-
-           
-        
+    
     if(curr == nullptr){ 
         if(nextKey == ""){
             bucket[hash].push_back(nullptr, segment);
@@ -63,6 +61,32 @@ void hashTable::add(Student new_Student, string key){
     }
 }
 
+//get
+Student* hashTable::get(string key){
+    int hash = hash_Func(key);
+    string segment = key.substr(0,segment_Length);
+    string nextKey = key.substr(segment_Length);
+
+    doublyLinkedList::node* curr = bucket[hash].search(segment);
+
+    if(curr == nullptr){
+        return nullptr;
+    }
+    
+    if(nextKey == ""){
+        return curr->student;
+    }
+
+    if(curr->table == nullptr){
+        return nullptr;
+    }
+        
+    return curr->table->get(nextKey);
+}
+
+
+
+//destructor
 hashTable::~hashTable() {
     for (int i = 0; i < capacity; i++) {
         doublyLinkedList::node* curr = bucket[i].give_Head();

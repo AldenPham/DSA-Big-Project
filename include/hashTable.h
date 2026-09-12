@@ -19,7 +19,7 @@ class hashTable{
 
         ~hashTable();
 
-        Student get(string key);
+        Student* get(string key);
 
         void add(Student new_Student, string key);
 };
