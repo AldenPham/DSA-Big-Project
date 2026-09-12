@@ -13,10 +13,10 @@
 
 using namespace std;
 
-class Student{
+struct Student{
     private:
     string name;
-    int studentID;
+    string studentID;
     int GPA;
     int ranking;
 
@@ -26,5 +26,7 @@ class Student{
 
     void get_Info();
 
+    string get_MSSV();
+    
     void update_Ranking(int newRank);
 };

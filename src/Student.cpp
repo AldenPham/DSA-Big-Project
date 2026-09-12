@@ -23,6 +23,10 @@ void Student::get_Info(){
     cout << ranking << "\n";
 }
 
+string Student::get_MSSV(){
+    return studentID;
+}
+
 void Student::update_Ranking(int newRank){
     ranking = newRank;
 }
