@@ -39,3 +39,4 @@ class dynamicArray{
     T& operator[](int idx);
 
 };
+#include "../src/dynamicArray.cpp"

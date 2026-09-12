@@ -9,7 +9,7 @@ Này để cập nhật các method của abstract class làm gì.
 
 using namespace std;
 
-Student::Student(string name, int studentID, int GPA, int ranking){
+Student::Student(string name, string studentID, int GPA, int ranking){
     this->name = name;
     this->studentID = studentID;
     this->GPA = GPA;

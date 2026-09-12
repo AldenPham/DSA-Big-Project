@@ -9,7 +9,7 @@ using namespace std;
 
 //Constructor
 template <typename T>
-dynamicArray<T>::dynamicArray(int capacity, T defaultValue = T()){
+dynamicArray<T>::dynamicArray(int capacity, T defaultValue){
         this->capacity = capacity;
         this->array = new T[capacity];
 
@@ -17,7 +17,7 @@ dynamicArray<T>::dynamicArray(int capacity, T defaultValue = T()){
             array[i] = defaultValue;
         }
 
-        sizeArr = 0;
+        sizeArr = capacity;
 }
 
 //Func push_Back()
@@ -58,7 +58,7 @@ void dynamicArray<T>::resize(){
 
 //Func Size
 template <typename T>
-int size(){
+int dynamicArray<T>::size(){
     return sizeArr;
 }
 

@@ -22,7 +22,7 @@ struct Student{
 
     public:
     //constructor
-    Student(string name, int studentID, int GPA, int ranking);
+    Student(string name, string studentID, int GPA, int ranking);
 
     void get_Info();
 
