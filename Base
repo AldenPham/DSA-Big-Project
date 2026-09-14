@@ -1,1 +1,93 @@
+// ====================== CÁC HÀM HỖ TRỢ ======================
+int height(Node* node) {
+    return node ? node->height : 0;
+}
 
+int getBalance(Node* node) {
+    return node ? height(node->left) - height(node->right) : 0;
+}
+
+void updateHeight(Node* node) {
+    if (node)
+        node->height = 1 + max(height(node->left), height(node->right));
+}
+
+// ====================== XOAY CÂY ======================
+
+// Xoay phải (Right Rotation) - LL
+Node* rotateRight(Node* y) {
+    Node* x = y->left;
+    Node* T2 = x->right;
+
+    x->right = y;
+    y->left = T2;
+
+    updateHeight(y);
+    updateHeight(x);
+
+    return x;
+}
+
+// Xoay trái (Left Rotation) - RR
+Node* rotateLeft(Node* x) {
+    Node* y = x->right;
+    Node* T2 = y->left;
+
+    y->left = x;
+    x->right = T2;
+
+    updateHeight(x);
+    updateHeight(y);
+
+    return y;
+}
+
+// ====================== CÂN BẰNG NODE ======================
+Node* balanceNode(Node* node) {
+    if (!node) return nullptr;
+
+    updateHeight(node);
+    int balance = getBalance(node);
+
+    // Left-Left
+    if (balance > 1 && getBalance(node->left) >= 0)
+        return rotateRight(node);
+
+    // Right-Right
+    if (balance < -1 && getBalance(node->right) <= 0)
+        return rotateLeft(node);
+
+    // Left-Right
+    if (balance > 1 && getBalance(node->left) < 0) {
+        node->left = rotateLeft(node->left);
+        return rotateRight(node);
+    }
+
+    // Right-Left
+    if (balance < -1 && getBalance(node->right) > 0) {
+        node->right = rotateRight(node->right);
+        return rotateLeft(node);
+    }
+
+    return node;
+}
+
+// ====================== INSERT ======================
+Node* insert(Node* node, Student s) {
+    // 1. Thêm như BST bình thường
+    if (!node) return new Node(s);
+
+    if (s < node->data) {
+        node->left = insert(node->left, s);
+    }
+    else if (node->data < s) {
+        node->right = insert(node->right, s);
+    }
+    else {
+        // Trùng key (thường không xảy ra vì có mssv)
+        return node;
+    }
+
+    // 2. Cân bằng lại
+    return balanceNode(node);
+}
